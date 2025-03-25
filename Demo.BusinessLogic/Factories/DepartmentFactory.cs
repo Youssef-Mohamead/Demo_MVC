@@ -18,7 +18,7 @@ namespace Demo.BusinessLogic.Factories
                 Code = D.Code,
                 Description = D.Description,
                 Name = D.Name,
-                DateOfCreation = DateOnly.FromDateTime(D.CreatedOn.GetValueOrDefault())
+                CreatedOn = DateOnly.FromDateTime(D.CreatedOn.GetValueOrDefault())
 
             };
         }
@@ -42,7 +42,7 @@ namespace Demo.BusinessLogic.Factories
             Code = departmentDto.Code,
             Name = departmentDto.Name,
             Description = departmentDto.Description,
-            CreatedOn = departmentDto.DateOfCreation.ToDateTime(new TimeOnly())
+            CreatedOn = departmentDto.CreatedOn.ToDateTime(new TimeOnly())
         };
         
         public static Department ToEntity(this UpdatedDepartmentDto departmentDto) => new Department()
@@ -51,7 +51,7 @@ namespace Demo.BusinessLogic.Factories
             Code = departmentDto.Code,
             Name = departmentDto.Name,
             Description = departmentDto.Description,
-            CreatedOn = departmentDto.DateOfCreation.ToDateTime(new TimeOnly())
+            CreatedOn = departmentDto.CreatedOn.ToDateTime(new TimeOnly())
         };
 
     }

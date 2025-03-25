@@ -1,5 +1,6 @@
 ﻿using Demo.BusinessLogic.DataTransferObjects;
 using Demo.BusinessLogic.Services;
+using Demo.Presentation.ViewModels.DepartmentsViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing.Constraints;
 
@@ -64,7 +65,57 @@ namespace Demo.Presentation.Controllers
             return View(department);
         }
         #endregion
-    
-    }
+        #region Edit Of Department
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
+            if (!id.HasValue) return BadRequest(); // 400
+            var department = _departmentService.GetDepartmentById(id.Value);
+            if (department is null) return NotFound();// 404
+            var departmentViewModel = new DepartmentEditViewModel()
+            {
+                Code = department.Code,
+                Name = department.Name,
+                Description = department.Description,
+                CreatedOn = department.CreatedOn
+            };
+            return View(departmentViewModel);
+        }
 
+        [HttpPost]
+        public IActionResult Edit([FromRoute] int id, DepartmentEditViewModel viewModel)
+        {     
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var UpdatedDepartment = new UpdatedDepartmentDto()
+                    {
+                        Id = id,
+                        Code = viewModel.Code,
+                        Name = viewModel.Name,
+                        Description = viewModel.Description,
+                        CreatedOn = viewModel.CreatedOn
+                    };
+                    int Result = _departmentService.UpdateDepartment(UpdatedDepartment);
+                    if (Result > 0)
+                        return RedirectToAction(nameof(Index));
+                    else
+                        ModelState.AddModelError(string.Empty, "Department is not Updated");
+                }
+                catch (Exception ex)
+                {
+                    if (_environment.IsDevelopment())
+                        ModelState.AddModelError(string.Empty, ex.Message);
+                    else
+                    {
+                        _logger.LogError(ex.Message);
+                        return View("ErrorView", ex);
+                    }
+                }
+            }
+            return View(viewModel);
+        }
+        #endregion
+    }
 }
