@@ -28,7 +28,7 @@ namespace Demo.BusinessLogic.Services
             //Auto Mapper
             //Constructor Mapping
             //extension Methods
-            return department is null ? null : department.ToDepartmentDetailsDto();
+            return department?.ToDepartmentDetailsDto();
 
         }
 
