@@ -1,5 +1,5 @@
-﻿using Demo.BusinessLogic.DataTransferObjects;
-using Demo.BusinessLogic.Services;
+﻿using Demo.BusinessLogic.DataTransferObject.DepartmentDataTransferObject;
+using Demo.BusinessLogic.Services.DepartmentServices;
 using Demo.Presentation.ViewModels.DepartmentsViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing.Constraints;

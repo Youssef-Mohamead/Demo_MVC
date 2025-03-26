@@ -4,13 +4,13 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
-using Demo.BusinessLogic.DataTransferObjects;
+using Demo.BusinessLogic.DataTransferObject.DepartmentDataTransferObject;
 using Demo.BusinessLogic.Factories;
 using Demo.DataAccess.Data.Contexts;
 using Demo.DataAccess.Models;
 using Demo.DataAccess.Repositories.Interfaces;
 
-namespace Demo.BusinessLogic.Services
+namespace Demo.BusinessLogic.Services.DepartmentServices
 {
     public class DepartmentService(IDepartmentRepository _departmentRepository) : IDepartmentService
     {

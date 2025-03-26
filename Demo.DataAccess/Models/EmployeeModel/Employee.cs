@@ -9,7 +9,7 @@ namespace Demo.DataAccess.Models.EmployeeModel
 {
     public class Employee : BaseEntity
     {
-        public string Name { get; set; } = null;
+        public string Name { get; set; } = null!;
         public int Age {  get; set; }
         public string? Address {  get; set; }
         public decimal Salary {  get; set; }
