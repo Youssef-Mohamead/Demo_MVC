@@ -10,7 +10,7 @@ namespace Demo.BusinessLogic.Factories
 {
     static class DepartmentFactory
     {
-        public static DepartmentDto ToDepartmentDto(this Department D)
+        public static DepartmentDto ToDepartmentDto(this Employee D)
         {
             return new DepartmentDto()
             {
@@ -22,7 +22,7 @@ namespace Demo.BusinessLogic.Factories
 
             };
         }
-        public static DepartmentDetailsDto ToDepartmentDetailsDto(this Department department)
+        public static DepartmentDetailsDto ToDepartmentDetailsDto(this Employee department)
         {
             return new DepartmentDetailsDto()
             {
@@ -37,7 +37,7 @@ namespace Demo.BusinessLogic.Factories
                 Description = department.Description
             };
         }
-        public static Department ToEntity(this CreatedDepartmentDto departmentDto) => new Department()
+        public static Employee ToEntity(this CreatedDepartmentDto departmentDto) => new Employee()
         {
             Code = departmentDto.Code,
             Name = departmentDto.Name,
@@ -45,7 +45,7 @@ namespace Demo.BusinessLogic.Factories
             CreatedOn = departmentDto.CreatedOn.ToDateTime(new TimeOnly())
         };
         
-        public static Department ToEntity(this UpdatedDepartmentDto departmentDto) => new Department()
+        public static Employee ToEntity(this UpdatedDepartmentDto departmentDto) => new Employee()
         {
             Id = departmentDto.Id,
             Code = departmentDto.Code,
