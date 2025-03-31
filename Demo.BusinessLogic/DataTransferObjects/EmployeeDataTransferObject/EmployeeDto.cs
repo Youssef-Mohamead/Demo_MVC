@@ -20,8 +20,8 @@ namespace Demo.BusinessLogic.DataTransferObjects.EmployeeDataTransferObject
         public bool IsActive { get; set; }
         [EmailAddress]
         public string? Email { get; set; }
-        public string Gender { get; set; }
+        public string EmpGender { get; set; }
         [Display(Name = "Employee Type")]
-        public string EmployeeType { get; set; }
+        public string EmpType { get; set; }
     }
 }
