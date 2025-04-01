@@ -15,9 +15,9 @@ namespace Demo.DataAccess.Repositories.Classes
         public IEnumerable<TEntity> GetAll(bool WithTracking = false)
         {
             if (WithTracking)
-                return _dbContext.Set<TEntity>().ToList();
+                return _dbContext.Set<TEntity>().Where(E => E.ISDeleted != true).ToList();
             else
-                return _dbContext.Set<TEntity>().AsNoTracking().ToList();
+                return _dbContext.Set<TEntity>().Where(E => E.ISDeleted != true).AsNoTracking().ToList();
 
         }
         // Insert
