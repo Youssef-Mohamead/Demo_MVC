@@ -53,5 +53,14 @@ namespace Demo.Presentation.Controllers
             return View(employeeDto);
         }
         #endregion
+        #region Details Of Employee
+        [HttpGet]
+        public IActionResult Details(int? id)
+        {
+            if (!id.HasValue) return BadRequest();
+            var emplyee = _employeeServices.GetEmployeeById(id.Value);
+            return emplyee is null ? NotFound() : View(emplyee);
+        }
+        #endregion
     }
 }
