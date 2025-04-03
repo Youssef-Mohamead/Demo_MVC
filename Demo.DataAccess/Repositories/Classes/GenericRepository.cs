@@ -38,5 +38,7 @@ namespace Demo.DataAccess.Repositories.Classes
             _dbContext.Set<TEntity>().Remove(entity);
             return _dbContext.SaveChanges();
         }
+
+       
     }
 }
