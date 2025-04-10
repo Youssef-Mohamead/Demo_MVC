@@ -1,7 +1,15 @@
 ﻿@model IEnumerable<DepartmentDto>
 @{
 	ViewData["Title"] = "Index";
+	var Dept = ViewData["Message"] as DepartmentDto;
 }
+
+<div class="alert alert-success">
+	@Dept.Name
+	<br />
+
+	@ViewBag.Message.Name
+</div>
 
 <h1 class="mt-3">All Departments</h1>
 
