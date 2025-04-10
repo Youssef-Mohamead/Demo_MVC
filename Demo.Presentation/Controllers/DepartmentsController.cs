@@ -13,8 +13,8 @@ namespace Demo.Presentation.Controllers
         public IActionResult Index()
         {
 
-            ViewData["Message"] = new DepartmentDto() { Name = "TestViewData" };
-            ViewBag.Message = new DepartmentDto() { Name = "TestViewBag" };
+            //ViewData["Message"] = new DepartmentDto() { Name = "TestViewData" };
+            //ViewBag.Message = new DepartmentDto() { Name = "TestViewBag" };
             var departments = _departmentService.GetAllDepartments();
             return View(departments);
         }
@@ -36,17 +36,18 @@ namespace Demo.Presentation.Controllers
                         Name = departmentViewModel.Name,
                         Code = departmentViewModel.Code,
                         CreatedOn = departmentViewModel.CreatedOn,
-                        Description= departmentViewModel.Description
+                        Description = departmentViewModel.Description
 
                     };
                     int Result = _departmentService.AddDepartment(departmentDto);
+                    string Message;
                     if (Result > 0)
-                        return RedirectToAction(nameof(Index));
+                        Message = $"Deprtment {departmentViewModel.Name} Is Created Successfully";
                     else
-                    {
-                        ModelState.AddModelError(string.Empty, "Department Can't Be Created");
+                        Message = $"Deprtment {departmentViewModel.Name} Can Not Be Created";
 
-                    }
+                    TempData["Message"] = Message;
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
@@ -171,7 +172,7 @@ namespace Demo.Presentation.Controllers
                     //2. Deployment => Log Error In File | Table in Database And Return Error View
 
                     _logger.LogError(ex.Message);
-                    return View("ErrorView",ex);
+                    return View("ErrorView", ex);
                 }
             }
         }
