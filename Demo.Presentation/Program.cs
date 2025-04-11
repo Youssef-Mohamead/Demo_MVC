@@ -31,10 +31,10 @@ namespace Demo.Presentation
                 options.UseLazyLoadingProxies();
             });
             //builder.Services.AddScoped<DepartmentRepository>();
-            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            //builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 
-            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            //builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             builder.Services.AddScoped<IEmployeeServices, EmployeeService>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
