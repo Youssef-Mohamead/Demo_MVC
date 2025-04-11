@@ -12,9 +12,9 @@ namespace Demo.Presentation.Controllers
 {
     public class EmployeesController(IEmployeeServices _employeeServices, IWebHostEnvironment environment, ILogger<EmployeesController> logger ) : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(string? EmployeeSearchName)
         {
-            var Employees = _employeeServices.GetAllEmployees();
+            var Employees = _employeeServices.GetAllEmployees(EmployeeSearchName);
             return View(Employees);
         }
         #region Create Employee

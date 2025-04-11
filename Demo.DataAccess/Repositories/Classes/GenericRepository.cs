@@ -1,4 +1,5 @@
-﻿using Demo.DataAccess.Data.Contexts;
+﻿using System.Linq.Expressions;
+using Demo.DataAccess.Data.Contexts;
 using Demo.DataAccess.Models.DepartmentModel;
 using Demo.DataAccess.Repositories.Interfaces;
 
@@ -39,6 +40,24 @@ namespace Demo.DataAccess.Repositories.Classes
             return _dbContext.SaveChanges();
         }
 
-       
+        public IEnumerable<TEntity> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<TResult> GetAll<TResult>(Expression<Func<TEntity, TResult>> Selector)
+        {
+         return _dbContext.Set<TEntity>()
+                          .Where(e => e.ISDeleted != true)
+                          .Select(Selector)
+                          .ToList();
+        }
+
+        public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> Predicate)
+        {
+            return _dbContext.Set<TEntity>()
+                         .Where(Predicate)
+                         .ToList();
+        }
     }
 }
