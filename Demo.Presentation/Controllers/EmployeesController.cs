@@ -103,7 +103,7 @@ namespace Demo.Presentation.Controllers
                 Salary = employee.Salary,
                 EmployeeType = Enum.Parse<EmployeeType>(employee.EmployeeType),
                 Gender = Enum.Parse<Gender>(employee.Gender),
-
+                DepartmentId=employee.DepartmentId
             };
             return View(employeeViewModel);
         }
