@@ -1,0 +1,56 @@
+﻿@using Demo.Presentation.ViewModels.AccountView
+@model RegisterViewModel
+@{
+	ViewData["Title"] = "Register";
+	Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+<div class="main-w3layouts wrapper">
+	<div class="main-agileinfo">
+		<div class="agileits-top">
+			<form asp-action="Register" asp-controller="Account" method="post">
+
+				<div asp-validation-summery="ModelOnly"></div>
+
+				<input class="text" type="text" asp-for="FirstName" placeholder="FirstName">
+				<span asp-Validation-formaction="FirstName" class="text-danger"></span>
+				<br />
+
+				<input class="text" type="text" asp-for="LastName" placeholder="LastName">
+				<span asp-Validation-formaction="LastName" class="text-danger"></span>
+				<br />
+
+				<input class="text" type="text" asp-for="UserName" placeholder="UsertName">
+				<span asp-Validation-formaction="UserName" class="text-danger"></span>
+				<br />
+
+				<input asp-for="Email" placeholder="Email">
+				<span asp-Validation-formaction="Email" class="text-danger"></span>
+				<br />
+
+				<input asp-for="Password" placeholder="Password">
+				<span asp-Validation-formaction="Password" class="text-danger"></span>
+				<br />
+
+				<input asp-for="ConfirmPassword" placeholder="ConfirmPassword">
+				<span asp-Validation-formaction="ConfirmPassword" class="text-danger"></span>
+
+
+
+
+
+				<div class="wthree-text">
+					<label class="anim">
+						<input asp-for="IsAgree" class="checkbox">
+						<span>I Agree To The Terms & Conditions</span>
+					</label>
+					<div class="clear"> </div>
+				</div>
+				<input type="submit" value="SIGNUP">
+			</form>
+			<p>Don have an Account? <a asp-action="Login"> Login Now!</a></p>
+		</div>
+	</div>
+
+</div>
+
