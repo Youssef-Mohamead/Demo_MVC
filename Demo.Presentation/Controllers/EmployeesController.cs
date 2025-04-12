@@ -80,8 +80,8 @@ namespace Demo.Presentation.Controllers
         public IActionResult Details(int? id)
         {
             if (!id.HasValue) return BadRequest();
-            var emplyee = _employeeServices.GetEmployeeById(id.Value);
-            return emplyee is null ? NotFound() : View(emplyee);
+            var employee = _employeeServices.GetEmployeeById(id.Value);
+            return employee is null ? NotFound() : View(employee);
         }
         #endregion
         #region Edit Of Employee
@@ -105,7 +105,7 @@ namespace Demo.Presentation.Controllers
                 EmployeeType = Enum.Parse<EmployeeType>(employee.EmployeeType),
                 Gender = Enum.Parse<Gender>(employee.Gender),
                 DepartmentId=employee.DepartmentId,
-                Image = employee.Image
+                
             };
             return View(employeeViewModel);
         }

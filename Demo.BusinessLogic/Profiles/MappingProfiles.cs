@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Demo.BusinessLogic.DataTransferObjects.EmployeeDataTransferObject;
 using Demo.DataAccess.Models.EmployeeModel;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 namespace Demo.BusinessLogic.Profiles
 {
@@ -22,7 +23,8 @@ namespace Demo.BusinessLogic.Profiles
                 .ForMember(dest => dest.Gender, Options => Options.MapFrom(src => src.Gender))
                 .ForMember(dest => dest.EmployeeType, Options => Options.MapFrom(src => src.EmployeeType))
                 .ForMember(dest => dest.HiringDate, Options => Options.MapFrom(src => DateOnly.FromDateTime(src.HiringDate)))
-                .ForMember(dest => dest.Department, options => options.MapFrom(src => src.Department != null ? src.Department.Name : null));
+                .ForMember(dest => dest.Department, options => options.MapFrom(src => src.Department != null ? src.Department.Name : null))
+                .ForMember(dest => dest.Image, options => options.MapFrom(src => src.ImageName));
 
 
             CreateMap<CreatedEmployeeDto, Employee>()

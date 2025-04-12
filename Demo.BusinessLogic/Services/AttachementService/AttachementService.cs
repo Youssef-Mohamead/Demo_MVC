@@ -12,7 +12,7 @@ namespace Demo.BusinessLogic.Services.AttachementService
 {
     public class AttachementService : IAttachementService
     {
-        List<string> allowedEtensions = [".png",".jpg",".Jpeg"];
+        List<string> allowedEtensions = [".png",".jpg",".jpeg"];
         const int  maxSize= 2_097_152;// 1024 * 1024
         public string? Upload(IFormFile file, string FolderName)
         {
@@ -25,11 +25,11 @@ namespace Demo.BusinessLogic.Services.AttachementService
                 return null;
             //*******************************************
             //3.Get Located Folder Path
-            var FolderPath= Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Files",FolderName);
+            var FolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Files", FolderName);
 
             //*******************************************
             //4.Make Attachment Name Unique-- GUID
-            var fileName=$"{Guid.NewGuid()}_{file.FileName}";
+            var fileName =$"{Guid.NewGuid()}_{file.FileName}";
 
             //*******************************************
             //5.Get File Path
