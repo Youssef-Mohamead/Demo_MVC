@@ -13,7 +13,7 @@ using Microsoft.VisualBasic;
 
 namespace Demo.BusinessLogic.Services.EmployeeServices
 {
-    public class EmployeeService(IUnitOfWork _unitOfWork, IMapper _mapper, IAttachementService attachementService) : IEmployeeServices
+    public class EmployeeService(IUnitOfWork _unitOfWork, IMapper _mapper, IAttachementService _attachementService) : IEmployeeServices
     {
         // Get All Employees
         public IEnumerable<EmployeeDto> GetAllEmployees(string? EmployeeSearchName)
@@ -42,6 +42,10 @@ namespace Demo.BusinessLogic.Services.EmployeeServices
         public int AddEmployee(CreatedEmployeeDto employeeDto)
         {
             var employee = _mapper.Map<CreatedEmployeeDto, Employee>(employeeDto);
+            if (employeeDto.Image is not null)
+            {
+                employee.ImageName = _attachementService.Upload(employeeDto.Image, "Images");
+            }
             _unitOfWork.EmployeeRepository.Add(employee);//Add Locally ,
             return _unitOfWork.SaveChanges();
         }

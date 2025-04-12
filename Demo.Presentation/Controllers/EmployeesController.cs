@@ -43,7 +43,8 @@ namespace Demo.Presentation.Controllers
                         IsActive = employeeViewModel.IsActive,
                         PhoneNumber = employeeViewModel.PhoneNumber,
                         Salary = employeeViewModel.Salary,
-                        DepartmentId = employeeViewModel.DepartmentId
+                        DepartmentId = employeeViewModel.DepartmentId,
+                        Image = employeeViewModel.Image
                     };
                     int Result = _employeeServices.AddEmployee(employeeDto);
                     if (Result > 0)
@@ -103,7 +104,8 @@ namespace Demo.Presentation.Controllers
                 Salary = employee.Salary,
                 EmployeeType = Enum.Parse<EmployeeType>(employee.EmployeeType),
                 Gender = Enum.Parse<Gender>(employee.Gender),
-                DepartmentId=employee.DepartmentId
+                DepartmentId=employee.DepartmentId,
+                Image = employee.Image
             };
             return View(employeeViewModel);
         }
@@ -129,6 +131,7 @@ namespace Demo.Presentation.Controllers
                     PhoneNumber = employeeViewModel.PhoneNumber,
                     Salary= employeeViewModel.Salary,
                     DepartmentId= employeeViewModel.DepartmentId
+                    
                 };
                 var Result = _employeeServices.UpdateEmployee(employeeDto);
                 if (Result > 0)
