@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Demo.Presentation.Controllers
 {
-    public class AccountController(UserManager<ApplicationUser> _userManager) : Controller
+    public class AccountController(UserManager<ApplicationUser> _userManager, SignInManager<ApplicationUser> _signInManger) : Controller
     {
 
         #region Register
@@ -25,7 +25,7 @@ namespace Demo.Presentation.Controllers
                 Email = viewModel.Email,
 
             };
-            var Result = _userManager.CreateAsync(User , viewModel.Password).Result;
+            var Result = _userManager.CreateAsync(User, viewModel.Password).Result;
             if (Result.Succeeded)
                 return RedirectToAction("Login");
             else
@@ -40,9 +40,43 @@ namespace Demo.Presentation.Controllers
         }
         #endregion
 
-
-
         //Login
+        #region Login
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(LoginViewModel viewModel)
+        {
+            if (!ModelState.IsValid) return View(viewModel);
+
+            var user = _userManager.FindByEmailAsync(viewModel.Email).Result; // Check User exist With Same Email Or Not
+            if (user is not null)
+            {
+                bool flag = _userManager.CheckPasswordAsync(user, viewModel.Password).Result;
+                if (flag) //email exist && password correct
+                {
+                    var Result = _signInManger.PasswordSignInAsync(user, viewModel.Password, viewModel.RememberMe, false).Result;
+                    if (Result.IsNotAllowed)
+                        ModelState.AddModelError(string.Empty, "Your Account Is Not Allowed");
+                    if (Result.IsLockedOut)
+                        ModelState.AddModelError(string.Empty, "Your Account Is Locked Out");
+                    if (Result.Succeeded)
+                        return RedirectToAction(nameof(HomeController.Index), "Home");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Invalid Login");
+            }
+            return View(viewModel);
+        }
+
+        #endregion
 
         //Sign Out
     }

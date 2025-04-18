@@ -25,7 +25,7 @@
 				<br />
 
 				<input asp-for="Email" placeholder="Email">
-				<span asp-Validation-formaction="Email" class="text-danger"></span>
+				<span asp-validation-for="Email" class="text-danger"></span>
 				<br />
 
 				<input asp-for="Password" placeholder="Password">
@@ -46,9 +46,9 @@
 					</label>
 					<div class="clear"> </div>
 				</div>
-				<input type="submit" value="SIGNUP">
+				<input type="submit" value="SIGN UP">
 			</form>
-			<p>Don have an Account? <a asp-action="Login"> Login Now!</a></p>
+			<p>Do have an Account? <a asp-action="Login"> Login Now!</a></p>
 		</div>
 	</div>
 
