@@ -97,12 +97,16 @@ namespace Demo.Presentation.Controllers
                         Body = "Reset Password Link" //TODO
                     };
                     // Send Email
-
+                    EmailSettings.SendEmail(email);
+                    return RedirectToAction(nameof(CheckYourInbox));
                 }
             }
             ModelState.AddModelError(string.Empty, "Invalid Operation");
             return View(nameof(ForgetPassword), viewModel);
         }
+
+        [HttpGet]
+        public IActionResult CheckYourInbox() => View();
         #endregion
     }
 }
