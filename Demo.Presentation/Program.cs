@@ -47,7 +47,8 @@ namespace Demo.Presentation
             builder.Services.AddTransient<IAttachementService, AttachementService>();
 
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-                            .AddEntityFrameworkStores<ApplicationDbContext>();
+                            .AddEntityFrameworkStores<ApplicationDbContext>()
+                            .AddDefaultTokenProviders();
 
            
 
