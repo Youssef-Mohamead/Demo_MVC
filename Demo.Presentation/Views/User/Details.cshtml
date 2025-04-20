@@ -1,0 +1,20 @@
+﻿@model ApplicationUser
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="my-5 w-75">User @Model.UserName Details</h1>
+
+<div class="tab-content" id="myTabContent">
+    <!-- General Tab Content -->
+
+    <partial name="PartialViews/DetailsDeletePartialView" />
+
+
+    <div class="mt-4">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+        <a asp-action="Index" class="btn btn-outline-dark">Back To list</a>
+    </div>
+
+   

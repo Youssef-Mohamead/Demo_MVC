@@ -1,0 +1,24 @@
+﻿@model ApplicationUser
+@{
+	ViewData["Title"] = "Delete";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form method="post" asp-controller="User" asp-action="Delete" class=" row col-12" enctype="multipart/form-data">
+	<div asp-validation-summary="ModelOnly"></div>
+	<h1 class="my-5 w-75">Are You Sure You Want To Delete @Model.UserName </h1>
+	<div class="tab-content" id="myTabContent">
+		<!-- General Tab Content -->
+
+
+		<partial name="PartialViews/DetailsDeletePartialView" />
+
+
+
+
+		<div class="mt-4">
+			<input class="btn btn-danger" type="submit" value="Delete" />
+			<a asp-action="Index" class="btn btn-outline-dark">Back To list</a>
+		</div>
+
+	</div>
+</form>
