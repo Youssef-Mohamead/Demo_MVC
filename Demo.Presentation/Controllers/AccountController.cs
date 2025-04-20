@@ -36,8 +36,8 @@ namespace Demo.Presentation.Controllers
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
-                return View(viewModel);
             }
+            return View(viewModel);
 
         }
         #endregion
