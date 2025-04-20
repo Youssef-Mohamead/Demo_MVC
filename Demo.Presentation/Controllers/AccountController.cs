@@ -3,6 +3,7 @@ using Demo.Presentation.Utilities;
 using Demo.Presentation.ViewModels.AccountView;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 
 namespace Demo.Presentation.Controllers
@@ -75,6 +76,17 @@ namespace Demo.Presentation.Controllers
                 ModelState.AddModelError(string.Empty, "Invalid Login");
             }
             return View(viewModel);
+        }
+
+        #endregion
+
+        #region Sign Out
+        [HttpGet]
+        public new IActionResult SignOut()
+        {
+            _signInManger.SignOutAsync();
+
+            return RedirectToAction(nameof(Login));
         }
 
         #endregion

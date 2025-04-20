@@ -8,11 +8,30 @@ namespace Demo.Presentation.Controllers
     public class UserController(UserManager<ApplicationUser> _userManager, SignInManager<ApplicationUser> _signInManger) : Controller
     {
         #region Index
-        public IActionResult Index()
+        //public IActionResult Index()
+        //{
+        //    var Users = _userManager.Users.ToList();
+        //    return View(Users);
+        //}
+
+        [HttpGet]
+        public IActionResult Index(string? UserSearchName)
         {
-            var Users = _userManager.Users.ToList();
-            return View(Users);
+            var users = _userManager.Users.AsEnumerable();
+
+            if (!string.IsNullOrEmpty(UserSearchName))
+            {
+                users = users.Where(u => u.FirstName.Contains(UserSearchName, StringComparison.OrdinalIgnoreCase) ||
+                                         u.LastName.Contains(UserSearchName, StringComparison.OrdinalIgnoreCase) ||
+                                         u.UserName.Contains(UserSearchName, StringComparison.OrdinalIgnoreCase));
+            }
+
+            var user = users.ToList();
+            return View(user);
         }
+
+
+
         #endregion
 
 
