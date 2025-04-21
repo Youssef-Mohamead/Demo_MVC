@@ -11,7 +11,7 @@ namespace Demo.Presentation.Utilities
             var Client = new SmtpClient("smtp.gmail.com", 587);
             Client.EnableSsl = true;
             Client.Credentials = new NetworkCredential("mohmmeadkhalef22@gmail.com", "hpaxycxpxgzxfcun");
-             Client.Send("mohmmeadkhalef@gmail.com", email.To, email.Subject,email.Body);
+             Client.Send("mohmmeadkhalef22@gmail.com", email.To, email.Subject,email.Body);
 
 
 

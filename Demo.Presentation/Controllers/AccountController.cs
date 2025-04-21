@@ -1,4 +1,5 @@
 ﻿using Demo.DataAccess.Models.IdentityModel;
+using Demo.Presentation.Helpers;
 using Demo.Presentation.Utilities;
 using Demo.Presentation.ViewModels.AccountView;
 using Microsoft.AspNetCore.Identity;
@@ -8,7 +9,7 @@ using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pag
 
 namespace Demo.Presentation.Controllers
 {
-    public class AccountController(UserManager<ApplicationUser> _userManager, SignInManager<ApplicationUser> _signInManger) : Controller
+    public class AccountController(UserManager<ApplicationUser> _userManager, SignInManager<ApplicationUser> _signInManger ,IMailService _mailService) : Controller
     {
 
         #region Register
@@ -113,7 +114,8 @@ namespace Demo.Presentation.Controllers
                         Body = "Reset Password Link" //TODO
                     };
                     // Send Email
-                    EmailSettings.SendEmail(email);
+                    //EmailSettings.SendEmail(email);
+                    _mailService.Send(email);
                     return RedirectToAction(nameof(CheckYourInbox));
                 }
             }
