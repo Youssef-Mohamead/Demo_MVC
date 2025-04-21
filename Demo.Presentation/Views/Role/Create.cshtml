@@ -1,0 +1,30 @@
+﻿@model IdentityRole
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center align-content-center mt-3">
+	<h1 class="col-8 my-4">Create Role</h1>
+	<form method="post" asp-controller="Role" asp-action="Create" class=" row col-14" enctype="multipart/form-data">
+		<div asp-validation-summary="ModelOnly"></div>
+
+		<div class="tab-content" id="myTabContent">
+
+			<div class="tab-pane fade show active p-4 border" id="general" role="tabpanel" aria-labelledby="general-tab">
+
+				<div class="row">
+
+					
+					<div class="form-group mb-3 col-12">
+						<label class="form-label" asp-for="Name"></label>
+						<input asp-for="Name" class="form-control" />
+					</div>
+
+
+					<div class="mt-4 m-auto">
+						<input class="btn btn-success" type="submit" value="Create" />
+						<a asp-controller="Role" asp-action="Index" class="btn btn-outline-dark">Back to list</a>
+					</div>
+	</form>
+</div>

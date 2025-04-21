@@ -1,0 +1,33 @@
+﻿@model IdentityRole
+@{
+	ViewData["Title"] = "Details";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<form method="post" asp-controller="Role" asp-action="Delete" class=" row col-12" enctype="multipart/form-data">
+	<div asp-validation-summary="ModelOnly"></div>
+	<h1 class="my-5 w-75">Are You Sure You Want To Delete @Model.Name Role </h1>
+	<div class="tab-content" id="myTabContent">
+		<!-- General Tab Content -->
+		<div class="tab-pane fade show active p-4 border" id="general" role="tabpanel" aria-labelledby="general-tab">
+			<div class="row">
+				<partial name="PartialViews/DetailsEditDeletePartialView" />
+				<div class="form-group mb-3 col-12">
+					<label class="form-label" asp-for="Name"></label>
+					<input asp-for="Name" class="form-control" readonly />
+				</div>
+			</div>
+		</div>
+
+		<div class="mt-4">
+			<input class="btn btn-danger" type="submit" value="Delete" />
+			<a asp-action="Index" class="btn btn-outline-dark">Back To list</a>
+		</div>
+	</div>
+
+</form>
+
+
+
+

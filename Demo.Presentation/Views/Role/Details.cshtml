@@ -1,0 +1,26 @@
+﻿@model IdentityRole
+@{
+	ViewData["Title"] = "Details";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="my-5 w-75"> @Model.Name Details</h1>
+
+<div class="tab-content" id="myTabContent">
+	<!-- General Tab Content -->
+	<div class="tab-pane fade show active p-4 border" id="general" role="tabpanel" aria-labelledby="general-tab">
+		<div class="row">
+			<partial name="PartialViews/DetailsEditDeletePartialView" />
+			<div class="form-group mb-3 col-12">
+				<label class="form-label" asp-for="Name"></label>
+				<input asp-for="Name" class="form-control" readonly />
+			</div>
+		</div>
+	</div>
+	<div class="mt-4">
+		<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+		<a asp-action="Index" class="btn btn-outline-dark">Back To list</a>
+	</div>
+
+
+
